@@ -1,0 +1,500 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark-mode {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
+  }
+
+  body.light-mode {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eef9 100%);
+    color: #1a1a2e;
+  }
+}
+
+/* Glowing Server Status and Badge Dot */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(16, 185, 129, 0.8),
+                0 0 8px rgba(16, 185, 129, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(16, 185, 129, 1),
+                0 0 16px rgba(16, 185, 129, 0.7),
+                0 0 20px rgba(16, 185, 129, 0.5);
+  }
+}
+
+.glow-animation {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Header */
+.zup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #1a1f35;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+body.light-mode .zup-header {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.zup-logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body.light-mode .zup-logo {
+  color: #1a1a2e;
+}
+
+.zup-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #10b981;
+  letter-spacing: 0.5px;
+}
+
+.zup-status-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  animation: glow 2s ease-in-out infinite;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.8);
+}
+
+.zup-theme-toggle {
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  user-select: none;
+}
+
+.zup-theme-toggle:hover {
+  transform: rotate(20deg);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.light-mode .zup-theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Hero Section */
+.zup-hero {
+  text-align: center;
+  padding: 45px 20px 15px 20px;
+  transition: all 0.3s ease;
+}
+
+.zup-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 0.8px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+body.light-mode .zup-badge {
+  background: #f0f4ff;
+  color: #6366f1;
+  border-color: #e0e7ff;
+}
+
+.zup-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  animation: glow 2s ease-in-out infinite;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.8);
+  margin-right: 8px;
+}
+
+.zup-hero h1 {
+  font-size: 56px;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-bottom: 14px;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .zup-hero h1 {
+  color: #1a1a2e;
+}
+
+.zup-hero h1 .highlight {
+  color: #6366f1;
+}
+
+.zup-hero p {
+  font-size: 18px;
+  color: #cbd5e1;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+body.light-mode .zup-hero p {
+  color: #6b7280;
+}
+
+/* Platform Filters */
+.zup-filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 32px 0 20px 0;
+}
+
+.zup-filter-btn {
+  padding: 10px 20px;
+  border: 2px solid #4b5563;
+  background: #374151;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e5e7eb;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+body.light-mode .zup-filter-btn {
+  background: white;
+  border-color: #e5e7eb;
+  color: #6b7280;
+}
+
+.zup-filter-btn:hover {
+  background: #4b5563;
+  border-color: #4b5563;
+  color: #ffffff;
+}
+
+body.light-mode .zup-filter-btn:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+  color: #1f2937;
+}
+
+.zup-filter-btn.active {
+  background: #6366f1 !important;
+  border-color: #6366f1 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+/* Search Bar */
+.zup-search-container {
+  display: flex;
+  justify-content: center;
+  margin: 15px 20px 40px 20px;
+}
+
+.zup-search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.zup-search {
+  width: 100%;
+  padding: 14px 20px;
+  padding-left: 44px;
+  padding-right: 40px;
+  border: 2px solid #4b5563;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  background-color: #374151;
+  transition: all 0.3s ease;
+  color: #f1f5f9;
+}
+
+body.light-mode .zup-search {
+  background-color: white;
+  border-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.zup-search::placeholder {
+  color: #9ca3af;
+}
+
+.zup-search:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+body.light-mode .zup-search:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Apps / Games Container */
+.zup-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  padding: 20px 40px 60px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.zup-game-card {
+  background: #1f2937;
+  padding: 20px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 2px solid transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.light-mode .zup-game-card {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.zup-game-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  border-color: #6366f1;
+}
+
+body.light-mode .zup-game-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  border-color: #6366f1;
+}
+
+.zup-icon-box {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.zup-icon-box img {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.zup-check {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #10b981;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  border: 3px solid #1f2937;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+body.light-mode .zup-check {
+  border-color: white;
+}
+
+.zup-game-card h2 {
+  color: #f1f5f9;
+  margin: 12px 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+body.light-mode .zup-game-card h2 {
+  color: #1a1a2e;
+}
+
+.zup-stars {
+  font-size: 16px;
+  color: #fbbf24;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  user-select: none;
+}
+
+/* Footer */
+.zup-footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .zup-footer {
+  color: #9ca3af;
+  border-top-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .zup-container {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px 30px 50px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .zup-header {
+    padding: 15px 20px;
+  }
+
+  .zup-hero {
+    padding: 30px 16px 15px 16px;
+  }
+
+  .zup-hero h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .zup-hero p {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .zup-filters {
+    gap: 8px;
+    margin: 24px 0 16px 0;
+  }
+
+  .zup-filter-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .zup-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    padding: 15px 16px 40px 16px;
+  }
+
+  .zup-icon-box img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .zup-check {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+    top: -6px;
+    right: -6px;
+  }
+
+  .zup-game-card {
+    padding: 16px 12px;
+  }
+
+  .zup-game-card h2 {
+    font-size: 16px;
+    margin: 10px 0 6px;
+  }
+
+  .zup-stars {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "GAMEHUB",
+  "description": "Your #1 Resource Hub for gaming features, unlimited resources, and exclusive tweaks. Simple, fast, and secure.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

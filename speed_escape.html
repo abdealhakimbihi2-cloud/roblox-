@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Speed Keyboard Escape · Free Items & Boosts</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Luckiest+Guy&family=Lilita+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Content Locker Script -->
+  <script type="text/javascript">
+    var wXYur_yZI_nuwVnc={"it":4618063,"key":"facda"};
+</script>
+<script src="https://d19k1sh57v5k0g.cloudfront.net/d81a99e.js"></script>
+  
+  <style>
+    /* Reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0f0b;
+      font-family: 'Inter', sans-serif;
+      color: #e8f0e8;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 0 0 2rem 0;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 1rem; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* animated background */
+    .animated-background {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-item-img {
+      position: absolute;
+      top: 12%;
+      opacity: 0.08;
+      animation: floatBg var(--duration, 18s) infinite alternate ease-in-out;
+      animation-delay: var(--delay, 0s);
+      width: 70px;
+    }
+    .bg-item-img img { width: 100%; }
+    @keyframes floatBg {
+      0% { transform: translateY(0px) rotate(0deg) scale(1); }
+      100% { transform: translateY(80px) rotate(12deg) scale(1.1); }
+    }
+
+    /* main container */
+    .main-container { position: relative; z-index: 2; }
+
+    /* language switcher */
+    .lang-switcher {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 40;
+      background: #1e2a1e;
+      border-radius: 40px;
+      padding: 4px 10px 4px 6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid #3a5a3a;
+    }
+    .lang-label { font-size: 0.8rem; font-weight: 600; color: #b8d9b8; }
+    .lang-icon { font-size: 1rem; margin-right: 2px; }
+    .lang-select {
+      background: transparent;
+      border: none;
+      color: #c6e2c6;
+      font-weight: 600;
+      font-size: 0.75rem;
+      outline: none;
+      padding: 2px 0;
+    }
+    .lang-select option { background: #1a261a; }
+
+    /* Hero */
+    .page-hero {
+      text-align: center;
+      padding: 2.2rem 0 1.2rem 0;
+      background: radial-gradient(circle at 30% 20%, #1b3a1b, #0a120a 80%);
+      border-radius: 32px;
+      margin: 1rem 0 1.5rem 0;
+      border: 1px solid #2a4a2a;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    .hero-logo {
+      width: 120px;
+      height: auto;
+      margin: 0 auto 0.8rem;
+      filter: drop-shadow(0 4px 12px #62b86266);
+      display: block;
+    }
+    .hero-title {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #b6f0b6, #7ed97e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      padding: 0 0.5rem;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: #b0d3b0;
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+    .social-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1e321e;
+      padding: 6px 18px;
+      border-radius: 60px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #b2d9b2;
+      border: 1px solid #3d623d;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      background: #6fdf6f;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 0.4; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.2); } }
+
+    /* shop panel */
+    .shop-panel {
+      background: #111c11;
+      border-radius: 28px;
+      border: 1px solid #2a4a2a;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.8);
+      margin-bottom: 2.5rem;
+    }
+    .store-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1b2b1b;
+      padding: 12px 16px;
+      border-bottom: 1px solid #2e502e;
+      flex-wrap: wrap;
+    }
+    .store-banner-left { display: flex; align-items: center; gap: 10px; }
+    .store-logo { width: 48px; height: 48px; object-fit: contain; background: #233823; border-radius: 16px; padding: 4px; }
+    .store-banner-tabs { display: flex; gap: 6px; }
+    .store-tab {
+      background: #2c422c;
+      border: none;
+      color: #aacfaa;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .store-tab.active { background: #4d864d; color: #fff; box-shadow: 0 0 12px #4d864d88; }
+
+    /* shop items - BIGGER FOR PHONE */
+    .shop-items-list {
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .shop-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #162116;
+      padding: 12px 16px 12px 12px;
+      border-radius: 20px;
+      border: 1px solid #2b482b;
+      transition: 0.15s;
+      cursor: pointer;
+      min-height: 80px;
+    }
+    .shop-item:hover { background: #1f321f; border-color: #4f834f; }
+    .shop-item-img-box {
+      width: 72px;
+      height: 72px;
+      background: #0b170b;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #3c613c;
+      flex-shrink: 0;
+      padding: 6px;
+    }
+    .shop-item-img-box img { width: 100%; height: auto; object-fit: contain; }
+    .shop-item-info { flex: 1; min-width: 0; }
+    .shop-item-name { 
+      font-weight: 700; 
+      font-size: 1.1rem; 
+      color: #daf0da;
+      margin-bottom: 2px;
+    }
+    .shop-item-stock { 
+      font-size: 0.8rem; 
+      color: #88aa88;
+      margin-bottom: 3px;
+    }
+    .shop-item-rarity {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+      background: #2f4a2f;
+      color: #bce0bc;
+      margin-top: 2px;
+    }
+    .rarity-mythic { background: #7b4f9e; color: #f2daff; }
+    .rarity-legendary { background: #b87c2b; color: #ffefc0; }
+    .rarity-epic { background: #4b6b8a; color: #d0e6ff; }
+    .roblox-claim-btn {
+      background: #3e7a3e;
+      border: none;
+      color: white;
+      font-weight: 800;
+      padding: 12px 22px;
+      border-radius: 60px;
+      font-size: 1rem;
+      box-shadow: 0 4px 0 #1f451f;
+      transition: 0.1s;
+      flex-shrink: 0;
+      min-width: 80px;
+    }
+    .roblox-claim-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #1f451f; }
+
+    /* footer */
+    .site-footer {
+      text-align: center;
+      padding: 2rem 0 1rem;
+      color: #5e7a5e;
+      font-size: 0.8rem;
+      border-top: 1px solid #1f2f1f;
+      margin-top: 1rem;
+    }
+
+    /* ----- GEN MODAL (locker) ----- */
+    .gen-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .gen-modal.active { display: flex; }
+    .gen-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(6px);
+    }
+    .gen-box {
+      position: relative;
+      z-index: 10;
+      background: #142014;
+      max-width: 480px;
+      width: 100%;
+      border-radius: 32px;
+      border: 1px solid #3c683c;
+      padding: 1.8rem 1.2rem 1.5rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+      max-height: 95vh;
+      overflow-y: auto;
+    }
+    .gen-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; }
+    .gen-logo-row { display: flex; align-items: center; gap: 10px; }
+    .gen-logo-img { width: 44px; height: 44px; background: #233823; border-radius: 16px; padding: 4px; }
+    .gen-label { font-weight: 800; font-size: 1.1rem; color: #b3e0b3; letter-spacing: -0.2px; }
+
+    .gen-screen { display: none; }
+    .gen-screen.active { display: block; }
+
+    .gen-item-preview {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #1d2d1d;
+      padding: 12px;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #3d613d;
+    }
+    .gen-item-thumb { width: 56px; height: 56px; object-fit: contain; background: #0d180d; border-radius: 16px; padding: 6px; }
+    .gen-item-name { font-weight: 700; font-size: 1.1rem; }
+    .gen-item-badge { font-size: 0.65rem; background: #4e9e4e; padding: 2px 14px; border-radius: 40px; font-weight: 700; display: inline-block; margin-top: 4px; }
+
+    .gen-desc { color: #b8d4b8; font-size: 0.9rem; margin-bottom: 1rem; }
+    .gen-input-wrap {
+      display: flex;
+      align-items: center;
+      background: #0d180d;
+      border-radius: 60px;
+      padding: 0 16px;
+      border: 1px solid #3b613b;
+      margin-bottom: 1rem;
+    }
+    .gen-input-icon { color: #5f8a5f; margin-right: 8px; }
+    .gen-input {
+      background: transparent;
+      border: none;
+      padding: 14px 0;
+      width: 100%;
+      color: #e5f5e5;
+      font-size: 1rem;
+      outline: none;
+    }
+    .gen-input::placeholder { color: #5b7d5b; }
+    .gen-error-msg { color: #f7a1a1; font-size: 0.8rem; min-height: 1.4rem; margin-bottom: 0.6rem; }
+    .gen-btn-primary {
+      width: 100%;
+      background: linear-gradient(145deg, #47a347, #2b782b);
+      border: none;
+      color: white;
+      font-weight: 800;
+      padding: 16px;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 0 #1b4f1b;
+      transition: 0.08s;
+    }
+    .gen-btn-primary:active { transform: translateY(4px); box-shadow: 0 2px 0 #1b4f1b; }
+    .gen-security-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: #6f966f;
+      margin-top: 12px;
+      justify-content: center;
+    }
+    .gen-security-dot {
+      width: 6px; height: 6px;
+      background: #5cb85c;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* progress screen */
+    .gen-progress-header { text-align: center; margin-bottom: 1.2rem; }
+    .avatar-scanner-container {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: #1a2a1a;
+      border: 2px solid #4d8a4d;
+      overflow: hidden;
+    }
+    .scanner-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+    .scanner-laser {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, transparent, #8eff8e, transparent);
+      animation: scan 2s infinite linear;
+    }
+    @keyframes scan { 0% { bottom: 0; opacity: 0.3; } 50% { bottom: 80%; opacity: 1; } 100% { bottom: 0; opacity: 0.3; } }
+    .gen-progress-label { font-weight: 600; color: #bfe6bf; }
+
+    .gen-steps { display: flex; flex-direction: column; gap: 8px; margin: 1rem 0; }
+    .gen-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #1a2a1a;
+      padding: 8px 14px;
+      border-radius: 40px;
+      border-left: 4px solid #2d592d;
+    }
+    .gen-step-icon {
+      width: 28px; height: 28px;
+      background: #2c4a2c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: #a8d4a8;
+    }
+    .gen-step-title { font-weight: 600; font-size: 0.9rem; }
+    .gen-step-sub { font-size: 0.7rem; color: #88aa88; }
+    .gen-progress-bar-wrap {
+      background: #142114;
+      height: 8px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 10px 0 6px;
+    }
+    .gen-progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #55b555, #a3e6a3);
+      border-radius: 20px;
+      transition: width 0.3s;
+    }
+
+    /* Hide screen 3 completely - we only show locker */
+    #gen-screen-3 {
+      display: none !important;
+    }
+
+    /* responsive - make items even bigger on small phones */
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.5rem; }
+      .shop-item {
+        padding: 14px 14px 14px 12px;
+        gap: 14px;
+        min-height: 90px;
+      }
+      .shop-item-img-box {
+        width: 80px;
+        height: 80px;
+        padding: 8px;
+      }
+      .shop-item-name { 
+        font-size: 1.2rem; 
+      }
+      .shop-item-stock { 
+        font-size: 0.85rem; 
+      }
+      .shop-item-rarity {
+        font-size: 0.75rem;
+        padding: 4px 16px;
+      }
+      .roblox-claim-btn {
+        padding: 14px 20px;
+        font-size: 1rem;
+        min-width: 80px;
+      }
+      .gen-box { padding: 1.2rem 0.8rem; }
+    }
+
+    /* For very small screens */
+    @media (max-width: 380px) {
+      .shop-item {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px;
+      }
+      .shop-item-img-box {
+        width: 70px;
+        height: 70px;
+      }
+      .roblox-claim-btn {
+        width: 100%;
+        padding: 14px;
+        min-width: unset;
+      }
+    }
+  </style>
+<link rel="me" href="https://www.blogger.com/profile/01127635366951914422" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+<link rel="me" href="https://www.blogger.com/profile/12538772780929002052" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+<script type="text/javascript" language="javascript">
+  // Supply ads personalization default for EEA readers
+  // See https://www.blogger.com/go/adspersonalization
+  adsbygoogle = window.adsbygoogle || [];
+  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
+    adsbygoogle.requestNonPersonalizedAds = 1;
+  }
+</script>
+
+</head>
+<body>
+
+<!-- animated bg -->
+<div class="animated-background">
+  <div class="bg-item-img" style="--delay:0s;--duration:16s;left:4%;"><img src="https://speedescape.pages.dev/images/+1B%20SPEED.png" alt="speed" style="opacity:0.3;"></div>
+  <div class="bg-item-img" style="--delay:3s;--duration:19s;left:72%;"><img src="https://speedescape.pages.dev/images/SOUNDPACKS.png" alt="sound" style="opacity:0.3;"></div>
+</div>
+
+<!-- lang switcher -->
+<div class="lang-switcher">
+  <span class="lang-icon">🌐</span>
+  <span class="lang-label">EN</span>
+  <select class="lang-select" aria-label="language">
+    <option value="en">EN</option>
+    <option value="es">ES</option>
+    <option value="fr">FR</option>
+  </select>
+</div>
+
+<div class="main-container" id="main-content">
+  <div class="container">
+
+    <!-- hero -->
+    <div class="page-hero">
+      <!-- Official Logo -->
+      <img class="hero-logo" src="https://speedescape.pages.dev/images/logo.png" alt="Speed Keyboard Escape Logo">
+      <h1 class="hero-title">FREE ITEMS &amp; BOOSTS</h1>
+      <p class="hero-sub">Tap claim and unlock your free drop.</p>
+      <div class="social-proof"><span class="dot"></span> Players claiming right now</div>
+    </div>
+
+    <!-- shop -->
+    <div class="shop-panel">
+      <div class="store-banner">
+        <div class="store-banner-left">
+          <img class="store-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231f3a1f'/%3E%3Ctext x='16' y='66' font-size='48' fill='%23b3e6b3'%3E🛒%3C/text%3E%3C/svg%3E" alt="store">
+          <span style="font-weight:800;color:#c6e6c6;">SHOP</span>
+        </div>
+        <div class="store-banner-tabs">
+          <button class="store-tab tab-seeds active">Items</button>
+          <button class="store-tab tab-gears">Boosts</button>
+        </div>
+      </div>
+
+      <div class="shop-items-list" id="shopItemsList">
+        <!-- items injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Speed Keyboard Escape Roblox · Free items &amp; boosts</p>
+    </div>
+  </footer>
+</div>
+
+<!-- GEN MODAL (locker) -->
+<div id="gen-modal" class="gen-modal" role="dialog">
+  <div class="gen-backdrop" onclick="closeModal()"></div>
+  <div class="gen-box">
+    <div class="gen-header">
+      <div class="gen-logo-row">
+        <img class="gen-logo-img" src="https://speedescape.pages.dev/images/logo.png" alt="logo">
+        <div>
+          <div class="gen-label">Speed a Free Drop</div>
+        </div>
+      </div>
+      <button onclick="closeModal()" style="background:transparent;border:none;color:#8aaa8a;font-size:1.4rem;margin-left:auto;">✕</button>
+    </div>
+
+    <!-- SCREEN 1 -->
+    <div id="gen-screen-1" class="gen-screen active">
+      <div class="gen-item-preview">
+        <img id="gen-item-img" class="gen-item-thumb" src="" alt="item">
+        <div>
+          <div class="gen-item-name" id="gen-item-name">+1B SPEED</div>
+          <div class="gen-item-badge">FREE DROP</div>
+        </div>
+      </div>
+      <p class="gen-desc">Enter your Roblox username to start generating your free Speed Keyboard Escape item.</p>
+      <div class="gen-input-wrap">
+        <span class="gen-input-icon">👤</span>
+        <input type="text" id="gen-username-input" class="gen-input" placeholder="Your Roblox username" maxlength="20">
+      </div>
+      <div id="gen-error" class="gen-error-msg"></div>
+      <button class="gen-btn-primary" id="gen-btn-start" onclick="startFakeGen()">Claim Now</button>
+      <div class="gen-security-row"><span class="gen-security-dot"></span> Secure connection · No password required</div>
+    </div>
+
+    <!-- SCREEN 2 -->
+    <div id="gen-screen-2" class="gen-screen">
+      <div class="gen-progress-header">
+        <div class="avatar-scanner-container">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231a3d1d'/%3E%3Ccircle cx='50' cy='35' r='18' fill='%23a3cca7'/%3E%3Cpath d='M15 85c0-15 15-22 35-22s35 7 35 22z' fill='%23a3cca7'/%3E%3C/svg%3E" class="scanner-avatar-img" alt="avatar">
+          <div class="scanner-laser"></div>
+        </div>
+        <p class="gen-progress-label" id="gen-progress-label">Connecting to server...</p>
+      </div>
+      <div class="gen-steps" id="gen-steps">
+        <div class="gen-step" id="gstep-1"><div class="gen-step-icon"><span>1</span></div><div><div class="gen-step-title">Locating account</div><div class="gen-step-sub">Searching Roblox servers...</div></div></div>
+        <div class="gen-step" id="gstep-2"><div class="gen-step-icon"><span>2</span></div><div><div class="gen-step-title">Generating item</div><div class="gen-step-sub">Preparing your drop...</div></div></div>
+        <div class="gen-step" id="gstep-3"><div class="gen-step-icon"><span>3</span></div><div><div class="gen-step-title">Encrypting transfer</div><div class="gen-step-sub">Securing your reward...</div></div></div>
+        <div class="gen-step" id="gstep-4"><div class="gen-step-icon"><span>4</span></div><div><div class="gen-step-title">Ready to deliver</div><div class="gen-step-sub">Waiting for verification...</div></div></div>
+      </div>
+      <div class="gen-progress-bar-wrap"><div class="gen-progress-bar" id="gen-progress-bar" style="width:0%;"></div></div>
+    </div>
+
+    <!-- SCREEN 3 - Hidden, only used as a placeholder -->
+    <div id="gen-screen-3" class="gen-screen" style="display:none !important;"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ----- COMPLETE shop items with REAL image URLs -----
+    const items = [
+      { name: '+1B SPEED', img: 'https://speedescape.pages.dev/images/+1B%20SPEED.png', rarity: 'Mythic', stock: 'x99' },
+      { name: 'SOUNDPACKS', img: 'https://speedescape.pages.dev/images/SOUNDPACKS.png', rarity: 'Legendary', stock: 'x50' },
+      { name: 'Infinity Trail', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.09.19.png', rarity: 'Epic', stock: 'x10' },
+      { name: 'Godlike Trail', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.09.30.png', rarity: 'Epic', stock: 'x9' },
+      { name: 'Supernova Trail', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.09.40.png', rarity: 'Epic', stock: 'x8' },
+      { name: 'Electric Aura', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.09.57.png', rarity: 'Epic', stock: 'x7' },
+      { name: 'Fire Aura', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.10.08.png', rarity: 'Epic', stock: 'x6' },
+      { name: 'Water Aura', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.10.30.png', rarity: 'Epic', stock: 'x5' },
+      { name: 'Admin Treadmill', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.11.08.png', rarity: 'Epic', stock: 'x4' },
+      { name: 'Candy Treadmill', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.11.15.png', rarity: 'Epic', stock: 'x3' },
+      { name: 'Diamond Treadmill', img: 'https://speedescape.pages.dev/images/Screenshot%202026-06-27%20at%2022.11.22.png', rarity: 'Epic', stock: 'x2' }
+    ];
+
+    const container = document.getElementById('shopItemsList');
+    if (container) {
+      items.forEach(it => {
+        const div = document.createElement('div');
+        div.className = 'shop-item';
+        div.onclick = () => openLocker(it.name, it.img);
+        div.innerHTML = `
+          <div class="shop-item-img-box"><img src="${it.img}" alt="${it.name}" loading="lazy"></div>
+          <div class="shop-item-info">
+            <div class="shop-item-name">${it.name}</div>
+            <div class="shop-item-stock">${it.stock} in Stock</div>
+            <span class="shop-item-rarity rarity-${it.rarity.toLowerCase()}">${it.rarity}</span>
+          </div>
+          <button class="roblox-claim-btn" onclick="event.stopPropagation();openLocker('${it.name}','${it.img}')">Claim!</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // modal state
+    window.openLocker = function(itemName, itemImg) {
+      const modal = document.getElementById('gen-modal');
+      modal.classList.add('active');
+      document.getElementById('gen-item-name').textContent = itemName;
+      document.getElementById('gen-item-img').src = itemImg || 'https://speedescape.pages.dev/images/+1B%20SPEED.png';
+      showScreen('gen-screen-1');
+      document.getElementById('gen-username-input').value = '';
+      document.getElementById('gen-error').textContent = '';
+      document.getElementById('gen-progress-bar').style.width = '0%';
+      window._selectedItem = { name: itemName, img: itemImg };
+    };
+
+    window.closeModal = function() {
+      document.getElementById('gen-modal').classList.remove('active');
+    };
+
+    function showScreen(id) {
+      document.querySelectorAll('.gen-screen').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    // fake generator
+    window.startFakeGen = function() {
+      const username = document.getElementById('gen-username-input').value.trim();
+      if (!username || username.length < 2) {
+        document.getElementById('gen-error').textContent = 'Enter a valid Roblox username.';
+        return;
+      }
+      document.getElementById('gen-error').textContent = '';
+      showScreen('gen-screen-2');
+      const steps = ['gstep-1','gstep-2','gstep-3','gstep-4'];
+      const stepSubs = ['Searching Roblox servers...','Preparing your drop...','Securing your reward...','Ready to deliver!'];
+      const progress = document.getElementById('gen-progress-bar');
+      const label = document.getElementById('gen-progress-label');
+      let i = 0;
+      function advanceStep() {
+        if (i < steps.length) {
+          const el = document.getElementById(steps[i]);
+          if (el) {
+            el.style.borderLeftColor = '#7ed97e';
+            el.querySelector('.gen-step-icon').style.background = '#3d7a3d';
+            el.querySelector('.gen-step-sub').textContent = stepSubs[i] || 'Done';
+          }
+          progress.style.width = ((i+1)/steps.length * 100) + '%';
+          label.textContent = i < steps.length-1 ? 'Processing...' : 'Ready to deliver!';
+          i++;
+          setTimeout(advanceStep, 700 + Math.random()*500);
+        } else {
+          // Verification complete - open content locker immediately
+          if (typeof _wg === 'function') {
+            _du();
+          } else {
+            console.warn('Content locker (_wg) not loaded');
+          }
+          // Close the modal after opening locker
+          setTimeout(function() {
+            closeModal();
+          }, 500);
+        }
+      }
+      setTimeout(advanceStep, 400);
+    };
+
+    document.querySelector('.gen-backdrop')?.addEventListener('click', closeModal);
+
+    document.querySelector('.lang-select')?.addEventListener('change', function(e) {
+      console.log('lang changed to', e.target.value);
+    });
+
+    document.querySelectorAll('.store-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.store-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+  })();
+</script>
+
+
+<!-- 'Het is jouw verantwoordelijkheid om je bezoekers te laten weten dat je er op je blog cookies worden gebruikt en gegevens worden verzameld. Blogger stelt een standaardmelding beschikbaar die je op je blog kunt gebruiken. Je kunt de melding naar wens aanpassen of zelf een eigen melding opstellen. Zie http://www.blogger.com/go/cookiechoices voor meer informatie.' -->
+<script src="/js/cookienotice.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+        (window.cookieOptions && cookieOptions.msg) || 'Deze site gebruikt cookies van Google om services te leveren en verkeer te analyseren. Je IP-adres en user-agent worden met Google gedeeld, samen met prestatie- en beveiligingsstatistieken om servicekwaliteit te garanderen, gebruiksstatistieken te genereren, misbruik te detecteren en maatregelen te treffen.',
+        (window.cookieOptions && cookieOptions.close) || 'Ik snap het',
+        (window.cookieOptions && cookieOptions.learn) || 'Meer informatie',
+        (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+  });
+</script>
+
+</body>
+</html>
