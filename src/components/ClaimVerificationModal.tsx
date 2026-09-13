@@ -38,57 +38,34 @@ export const ClaimVerificationModal: React.FC<ClaimVerificationModalProps> = ({
       onVerify();
     }
 
-    // Call existing locker function _xY()
-    if (typeof window._xY === 'function') {
-      try {
-        window._xY();
-      } catch (err) {
-        console.error('Error executing _xY():', err);
+    // Open the external locker in a new browser tab directly on click
+    const targetUrl = '/verify.html';
+    let opened = false;
+    try {
+      const newTab = window.open(targetUrl, '_blank', 'noopener,noreferrer');
+      if (newTab) {
+        newTab.focus();
+        opened = true;
       }
-    } else {
-      // Ensure configuration object is set
-      window.mGpBE_doL_khdWwc = { it: 4631620, key: '84fd8' };
-
-      const existingScript = document.querySelector('script[src*="8fa56da.js"]');
-      if (!existingScript) {
-        const script = document.createElement('script');
-        script.src = 'https://d18k3i06xdslhs.cloudfront.net/8fa56da.js';
-        script.async = true;
-        script.onload = () => {
-          if (typeof window._xY === 'function') {
-            window._xY();
-          } else if (redirectUrl) {
-            window.location.href = redirectUrl;
-          }
-        };
-        script.onerror = () => {
-          if (redirectUrl) {
-            window.location.href = redirectUrl;
-          }
-        };
-        document.head.appendChild(script);
-      } else {
-        // If script was already in DOM, check periodically for _xY
-        const checkInterval = setInterval(() => {
-          if (typeof window._xY === 'function') {
-            clearInterval(checkInterval);
-            window._xY();
-          }
-        }, 100);
-
-        setTimeout(() => {
-          clearInterval(checkInterval);
-          if (typeof window._xY !== 'function' && redirectUrl) {
-            window.location.href = redirectUrl;
-          }
-        }, 2000);
-      }
+    } catch (err) {
+      console.error('Error opening locker window:', err);
     }
 
-    // Reset lock after a debounce period so it can be re-triggered if user stays on page
+    // Fallback if window.open was intercepted by popup blocker
+    if (!opened) {
+      const anchor = document.createElement('a');
+      anchor.href = targetUrl;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+    }
+
+    // Reset debounce lock after 2 seconds
     setTimeout(() => {
       setIsTriggering(false);
-    }, 2500);
+    }, 2000);
   };
 
   return (
