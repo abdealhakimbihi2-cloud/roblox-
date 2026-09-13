@@ -31,6 +31,12 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({ resource, onClose 
     setDownloadState('verifying');
     setTimeout(() => {
       setDownloadState('ready');
+      const targetUrl = resource.downloadUrl || 'https://puz-rdx.pages.dev/';
+      try {
+        window.location.href = targetUrl;
+      } catch (e) {
+        console.error(e);
+      }
     }, 1200);
   };
 
@@ -229,20 +235,12 @@ export const ResourceModal: React.FC<ResourceModalProps> = ({ resource, onClose 
               {downloadState === 'ready' && (
                 <>
                   <Check className="w-4 h-4 text-emerald-200" />
-                  <span>Mirror Link Unlocked</span>
+                  <span>Redirecting to Resource...</span>
                 </>
               )}
             </button>
           </div>
         </div>
-
-        {/* Live confirmation state toast when ready */}
-        {downloadState === 'ready' && (
-          <div className="p-3 bg-emerald-950/90 border-t border-emerald-800 text-emerald-200 text-xs text-center flex items-center justify-center gap-2">
-            <Check className="w-4 h-4 text-emerald-400" />
-            <span>Secure download token generated. Direct high-speed mirror opened.</span>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { SearchBar } from './components/SearchBar';
 import { ResourceCard } from './components/ResourceCard';
+import { ResourceGridSkeleton } from './components/ResourceCardSkeleton';
 import { ResourceModal } from './components/ResourceModal';
 import { RobloxTipsPage } from './components/RobloxTipsPage';
 import { SpeedEscapePage } from './components/SpeedEscapePage';
@@ -18,6 +19,7 @@ import { SearchX, ShieldCheck } from 'lucide-react';
 export default function App() {
   // ONLY the 7 specified games, in the exact required order
   const [resources] = useState<GameResource[]>(INITIAL_RESOURCES);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
   const [selectedResource, setSelectedResource] = useState<GameResource | null>(null);
@@ -28,6 +30,14 @@ export default function App() {
   const [showNightsForest, setShowNightsForest] = useState(false);
   const [showBrookhaven, setShowBrookhaven] = useState(false);
   const [showAnimalHospital, setShowAnimalHospital] = useState(false);
+
+  // Initial perceived load simulation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 450);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Dark / Light Mode state matching zupgame.store
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
@@ -150,7 +160,9 @@ export default function App() {
 
         {/* Main Games Container with the Games */}
         <main className="zup-container">
-          {filteredResources.length > 0 ? (
+          {isLoading ? (
+            <ResourceGridSkeleton count={7} />
+          ) : filteredResources.length > 0 ? (
             filteredResources.map((game) => (
               <ResourceCard
                 key={game.id}

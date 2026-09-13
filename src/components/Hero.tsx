@@ -25,20 +25,8 @@ export const Hero: React.FC<HeroProps> = ({
         VERIFIED RESOURCE HUB
       </div>
 
-      {/* Main Title */}
-      <h1>
-        GAMEHUB: Your #1<br />
-        <span className="highlight">Resource Hub</span>
-      </h1>
-
-      {/* Subtitle */}
-      <p>
-        Premium features, unlimited resources, and exclusive tweaks.<br />
-        Simple, fast, and secure.
-      </p>
-
       {/* Platform Filters - Exact 4 from zupgame.store */}
-      <div className="zup-filters">
+      <div className="zup-filters mt-2">
         {filters.map((filter) => {
           const isActive = activeFilter === filter.id;
           return (

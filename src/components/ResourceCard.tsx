@@ -10,6 +10,7 @@ export const ResourceCard: React.FC<ResourceCardProps> = ({
   resource,
   onSelect
 }) => {
+  const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   // Reliable fallback icons matching the 7 games exactly
@@ -43,15 +44,22 @@ export const ResourceCard: React.FC<ResourceCardProps> = ({
       }}
     >
       {/* Icon Box with Green Check Badge */}
-      <div className="zup-icon-box">
+      <div className="zup-icon-box relative">
+        {!imgLoaded && !imgError && (
+          <div className="w-[140px] h-[140px] rounded-xl bg-slate-700/60 dark:bg-slate-700/60 light:bg-slate-200 absolute inset-0 skeleton-shimmer z-0" />
+        )}
         <img 
           src={imageSrc} 
           alt={resource.name} 
           loading="lazy"
-          onError={() => setImgError(true)}
-          className="transition-transform duration-300 group-hover:scale-105"
+          onLoad={() => setImgLoaded(true)}
+          onError={() => {
+            setImgError(true);
+            setImgLoaded(true);
+          }}
+          className={`relative z-10 transition-all duration-300 group-hover:scale-105 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
-        <div className="zup-check" title="Verified & Checked">
+        <div className="zup-check z-20" title="Verified & Checked">
           ✓
         </div>
       </div>

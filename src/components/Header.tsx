@@ -16,9 +16,9 @@ export const Header: React.FC<HeaderProps> = ({
       <div 
         className="zup-logo cursor-pointer"
         onClick={onLogoClick}
-        title="GAMEHUB - Home"
+        title="likomy.site - Home"
       >
-        GAMEHUB
+        likomy.site
       </div>
 
       <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
