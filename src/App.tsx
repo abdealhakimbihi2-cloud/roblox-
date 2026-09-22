@@ -11,6 +11,7 @@ import { StealAnEggPage } from './components/StealAnEggPage';
 import { NightsForestPage } from './components/NightsForestPage';
 import { BrookhavenPage } from './components/BrookhavenPage';
 import { AnimalHospitalPage } from './components/AnimalHospitalPage';
+import { AdBanner } from './components/AdBanner';
 import { Footer } from './components/Footer';
 import { INITIAL_RESOURCES } from './data/resources';
 import { GameResource, FilterType } from './types';
@@ -232,6 +233,9 @@ export default function App() {
             </div>
           )}
         </main>
+
+        {/* Ad Unit right above Footer */}
+        <AdBanner />
       </div>
 
       {/* Footer matching zupgame.store */}
