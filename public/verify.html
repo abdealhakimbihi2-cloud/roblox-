@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Human Verification - Offer Locker</title>
+  <title>Human Verification</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Lilita+One&display=swap" rel="stylesheet">
@@ -22,83 +22,63 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 16px;
     }
-    .container {
-      max-width: 540px;
+    .card {
+      max-width: 420px;
       width: 100%;
-      height: 640px;
       background: #0c160e;
       border: 1px solid #1b3421;
-      border-radius: 20px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(89, 214, 106, 0.12);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      border-radius: 26px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 25px rgba(89, 214, 106, 0.08);
     }
-    .header {
-      background: #112214;
-      border-bottom: 1px solid #1b3421;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .header h1 {
+    h1 {
       font-family: 'Lilita One', cursive, sans-serif;
-      font-size: 18px;
+      font-size: 26px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: #5de876;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 14px rgba(93, 232, 118, 0.25);
+      margin-bottom: 10px;
     }
-    .header p {
-      font-size: 12px;
+    p {
+      font-size: 14px;
       color: #7ea886;
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
-    .iframe-wrapper {
-      flex: 1;
-      position: relative;
-      background: #080f0a;
-    }
-    iframe {
+    button {
       width: 100%;
-      height: 100%;
-      border: none;
+      padding: 14px 24px;
+      border-radius: 9999px;
+      background-color: #38783d;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 18px;
+      border: 1px solid #2b5e31;
+      box-shadow: 0 5px 0 #1e4622;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
     }
-    .footer {
-      background: #0e1a10;
-      border-top: 1px solid #1b3421;
-      padding: 10px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #52b561;
-      font-weight: 600;
+    button:hover {
+      background-color: #418a47;
     }
-    a.direct-btn {
-      color: #7ea886;
-      text-decoration: underline;
-      font-size: 12px;
+    button:active {
+      transform: translateY(2px);
     }
   </style>
+  <script type="text/javascript">
+      var LaJFm_GnL_SaSyfc={"it":4635134,"key":"2c5b7"};
+  </script>
+  <script src="https://d18k3i06xdslhs.cloudfront.net/f9ccb06.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div>
-        <h1>HUMAN VERIFICATION</h1>
-        <p>Complete 1 task below to receive your items</p>
-      </div>
-    </div>
-    <div class="iframe-wrapper">
-      <iframe src="https://appcomplete.org/cl/i/j6vqxn" title="Offer Locker" allow="geolocation" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation"></iframe>
-    </div>
-    <div class="footer">
-      <span>🛡️ Secure Offer Verification</span>
-      <a href="https://appcomplete.org/cl/i/j6vqxn" class="direct-btn" target="_blank" rel="noopener">Open Directly</a>
-    </div>
+  <div class="card">
+    <h1>HUMAN VERIFICATION</h1>
+    <p>Complete the verification step below to receive your items instantly.</p>
+    <button onclick="_RH()">Click me!</button>
   </div>
 </body>
 </html>
